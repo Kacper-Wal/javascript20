@@ -15,18 +15,20 @@
   })
 
   cw1.addEventListener("click", function () {
-    fetch('https://jsonplaceholder.typicode.com/posts')
-      .then(response => response.json())
-      .then(posts => {
-        const listItems = posts.map(post => `
-          <li>
-            <strong>${post.title}</strong>
-            <p>${post.body}</p>
-          </li>
-        `).join('');
-
-        answer.innerHTML = `<ul>${listItems}</ul>`;
-      });
+    answer.textContent = "Loading…";
+    setTimeout(() => {
+      fetch('https://jsonplaceholder.typicode.com/posts')
+        .then(response => response.json())
+        .then(posts => {
+          const listItems = posts.map(post => `
+            <li>
+              <strong>${post.title}</strong>
+              <p>${post.body}</p>
+            </li>
+          `).join('');
+          answer.innerHTML = `<ul>${listItems}</ul>`;
+        });
+    }, 1000);
   });
 
   cw2.addEventListener("click", function () {
